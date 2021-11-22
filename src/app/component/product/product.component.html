@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Danh sach san pham</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button class="btn btn-outline-success" type="submit" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Them moi</button>
+            </div>
+        </div>
+    </nav>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Ten san pham</th>
+                <th scope="col">Mo ta</th>
+                <th scope="col">Gia</th>
+                <th scope="col">Hanh dong</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of productList">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>
+                    <button  type="button" class="btn btn-outline-primary me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModalEdit" (click)="getProductDetail(product)">Sua</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="btnDeleteClick(product)">Xoa</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Them moi san pham</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="productDetail">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Ten sp</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                                formControlName="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">mo ta</label>
+                            <input type="text" class="form-control" id="description" aria-describedby="emailHelp"
+                                formControlName="description">
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">gia</label>
+                            <input type="text" class="form-control" id="price" aria-describedby="emailHelp"
+                                formControlName="price">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huy</button>
+                            <button type="button" class="btn btn-primary" (click)="addProduct()">Them</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+  <!-- Edit -->
+  <div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sua san pham</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="productDetail">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ten sp</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                        formControlName="name">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">mo ta</label>
+                    <input type="text" class="form-control" id="description" aria-describedby="emailHelp"
+                        formControlName="description">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">gia</label>
+                    <input type="text" class="form-control" id="price" aria-describedby="emailHelp"
+                        formControlName="price">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huy</button>
+                    <button type="button" class="btn btn-outline-success" (click)="editProduct()">Sua</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
